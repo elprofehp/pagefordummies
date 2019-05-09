@@ -22,9 +22,11 @@ $app->get('/', function() use($app) {
   return $app['twig']->render('index.twig');
 });
 
-$app->get('/otherURL', function() use($app) {
+$app->get('/otherURL/{yourName}', function($yourName) use($app) {
   $app['monolog']->addDebug('logging output.');
-  return $app['twig']->render('otherView.twig');
+  return $app['twig']->render('otherView.twig' , array(
+  	'yourNameView' => $yourName
+  ));
 });
 
 $app->run();
